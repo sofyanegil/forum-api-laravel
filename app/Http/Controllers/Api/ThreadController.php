@@ -36,7 +36,7 @@ class ThreadController extends Controller
 
     public function show(string $threadId)
     {
-        $thread = Thread::with('comments')->find($threadId);
+        $thread = Thread::with('comments.replies')->find($threadId);
         if (!$thread) {
             return CustomJsonResponse::notFound('Thread not found');
         }

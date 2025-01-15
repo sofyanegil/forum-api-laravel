@@ -30,6 +30,11 @@ class Comment extends Model
         return $this->belongsTo(Thread::class);
     }
 
+    public function replies()
+    {
+        return $this->hasMany(Reply::class);
+    }
+
     public static function boot()
     {
         parent::boot();
