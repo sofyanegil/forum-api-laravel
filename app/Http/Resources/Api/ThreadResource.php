@@ -21,6 +21,7 @@ class ThreadResource extends JsonResource
             'username' => $this->user->username,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
+            'comments' => CommentResource::collection($this->whenLoaded('comments')),
         ];
     }
 }
