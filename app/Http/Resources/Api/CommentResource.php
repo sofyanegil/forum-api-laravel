@@ -21,6 +21,7 @@ class CommentResource extends JsonResource
             'username' => $this->user->username,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
+            'likeCount' => count($this->likes),
             "replies" => ReplyResource::collection($this->whenLoaded('replies')),
         ];
     }
