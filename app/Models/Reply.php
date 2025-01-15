@@ -25,11 +25,6 @@ class Reply extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function comment()
-    {
-        return $this->belongsTo(Comment::class);
-    }
-
     public static function boot()
     {
         parent::boot();
