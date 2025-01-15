@@ -65,6 +65,34 @@ class CustomJsonResponse implements Responsable
     }
 
     /**
+     * Create a fail response.
+     *
+     * @param  string  $message
+     * @param  mixed   $data
+     * @param  int     $code
+     * @return CustomJsonResponse
+     */
+
+    public static function fail(string $message, $data = null, int $code = 400): CustomJsonResponse
+    {
+        return new static('fail', $code, $message, $data);
+    }
+
+    /**
+     * Create a not found response.
+     *
+     * @param  string  $message
+     * @param  mixed   $data
+     * @param  int     $code
+     * @return CustomJsonResponse
+     */
+
+    public static function notFound(string $message, $data = null, int $code = 404): CustomJsonResponse
+    {
+        return new static('fail', $code, $message, $data);
+    }
+
+    /**
      * Create a validation error response.
      *
      * @param  string  $message
@@ -73,8 +101,25 @@ class CustomJsonResponse implements Responsable
      * @return CustomJsonResponse
      */
 
+
     public static function validationError($errors, string $message = 'Validation Error',  int $code = 400): CustomJsonResponse
     {
         return new static('fail', $code, $message, null, $errors);
+    }
+
+
+    /**
+     * Create a generic error response.
+     *
+     * @param  string  $message
+     * @param  mixed   $errors
+     * @param  int     $code
+     * @return CustomJsonResponse
+     */
+
+    public static function error(string $message, $errors = null, int $code = 500): CustomJsonResponse
+
+    {
+        return new static('error', $code, $message, null, $errors);
     }
 }
