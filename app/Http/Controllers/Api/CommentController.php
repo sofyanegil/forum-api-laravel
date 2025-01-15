@@ -41,12 +41,12 @@ class CommentController extends Controller
             return CustomJsonResponse::notFound('Thread not found');
         }
 
-        $comment = Comment::find($commentId);
+        $comment = $thread->comments()->find($commentId);
         if (!$comment) {
             return CustomJsonResponse::notFound('Comment not found');
         }
 
-        if ($thread->user_id !== auth('api')->user()->id) {
+        if ($comment->user_id !== auth('api')->user()->id) {
             return CustomJsonResponse::fail('Unauthorized', null, 403);
         }
 
