@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\ReplyController;
 use App\Http\Controllers\Api\CommentController;
 use App\Http\Controllers\Api\ThreadController;
+use App\Http\Controllers\Api\UserCommentLikeController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,6 +16,7 @@ Route::middleware('auth:api')->group(function () {
     Route::delete('/threads/{threadId}/comments/{commentId}', [CommentController::class, 'destroy']);
     Route::post('/threads/{threadId}/comments/{commentId}/replies', [ReplyController::class, 'store']);
     Route::delete('/threads/{threadId}/comments/{commentId}/replies/{replyId}', [ReplyController::class, 'destroy']);
+    Route::put('/threads/{threadId}/comments/{commentId}/likes', [UserCommentLikeController::class, 'like']);
 });
 
 Route::prefix('threads')->group(function () {
