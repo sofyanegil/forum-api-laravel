@@ -25,6 +25,16 @@ class UserController extends Controller
     public function login(UserLoginRequest $request)
     {
         $credentials = $request->only('username', 'password');
+        $user = User::where('username', $request->input('username'))->first();
+
+        if (!$user) {
+            return CustomJsonResponse::fail(
+                'Username not found, please register first',
+                null,
+                400
+            );
+        }
+
         if (!$token = auth()->guard('api')->attempt($credentials)) {
             return CustomJsonResponse::fail(
                 'Username or password is incorrect',
